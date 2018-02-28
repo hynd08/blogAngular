@@ -9,23 +9,25 @@
 </div>
 
 <div class="container">
-    <div class="listArticle">
+    <div class="listArticle" *ngIf="!editing">
 
-        <div class="article">
+        <div class="article" *ngFor="let article of articles">
 
-            <h2>{{ article?.title }}</h2>
+             <h2>{{ article?.title }}</h2>
 
             <p>{{ article?.description }}</p>
+            <h3>{{ article?.author }}</h3>
 
         </div>
 
-        <button class="btn btn-info">Ajouter un article</button>
+        <button class="btn btn-info"(click)="addArticle()"> Ajouter un article</button>
 
     </div>
 
-    <div class="container-fluid bg-light py-3">
+    <div class="container-fluid bg-light py-3" *ngIf="editing">
 
-        <form id="contact-form" method="post" action="contact.php" role="form">
+        <form id="contact-form" method="post" action="contact.php" role="form"
+              (ngSubmit)="saveArticle(myForm)" #myForm="ngForm">
 
             <div class="messages"></div>
 
@@ -39,7 +41,9 @@
 
                             <label for="form_title">Title *</label>
 
-                            <input id="form_title" type="text" name="title" class="form-control" placeholder="Please enter a title *" required>
+                            <input id="form_title" type="text" name="title"
+                                   [(ngModel)]="editArticle.title"
+                                   class="form-control" placeholder="Please enter a title *" required>
 
                         </div>
 
@@ -51,7 +55,9 @@
 
                             <label for="form_author">Author *</label>
 
-                            <input id="form_author" name="author" class="form-control" placeholder="Please enter your name *" required="required">
+                            <input id="form_author" name="author"
+                                   [(ngModel)]="editArticle.author"
+                                   class="form-control" placeholder="Please enter your name *" required="required">
 
                         </div>
 
@@ -71,7 +77,9 @@
 
                         <label for="form_descr">Description *</label>
 
-                        <textarea id="form_descr" name="description" class="form-control" placeholder="Type your article content here..." rows="4" required></textarea>
+                        <textarea id="form_descr" name="description"
+                                  [(ngModel)]="editArticle.description"
+                                  class="form-control" placeholder="Type your article content here..." rows="4" required></textarea>
 
                         <div class="help-block with-errors"></div>
 
@@ -80,8 +88,9 @@
                 </div>
 
                 <div class="col-md-12">
+                    <input type="submit" class="btn btn-success btn-send" value="Add and Continue">
 
-                    <input type="submit" class="btn btn-success btn-send" value="Publish">
+                    <input type="submit" (click)="backToList()" class="btn btn-success btn-send" value="Publish">
 
                 </div>
 
