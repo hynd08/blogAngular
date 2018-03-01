@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/xampp/htdocs/Angular/blog/.angular-cli.json</file>
             <file>file:/C:/xampp/htdocs/Angular/blog/src/app/app.component.html</file>
-            <file>file:/C:/xampp/htdocs/Angular/blog/src/app/article.ts</file>
+            <file>file:/C:/xampp/htdocs/Angular/blog/src/assets/articles.json</file>
+            <file>file:/C:/xampp/htdocs/Angular/blog/src/app/app.component.ts</file>
+            <file>file:/C:/xampp/htdocs/Angular/blog/src/app/app.module.ts</file>
         </group>
     </open-files>
 </project-private>
