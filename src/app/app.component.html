@@ -11,11 +11,17 @@
 <div class="container">
     <div class="listArticle" *ngIf="!editing">
 
-        <div class="article" *ngFor="let article of articles">
+        <div class="article" *ngFor="let article of articles; index as i;">
 
-             <h2>{{ article?.title }}</h2>
+             <h2>{{ article?.title }}   <img src="/assets/photo1.png"
+                                        (click)="modifyArticle(article.id, i)">
+                                        <img src="/assets/photo2.png"
+                                        (click) ="deleteArticle(article.id, i)">
+            </h2>
+
 
             <p>{{ article?.description }}</p>
+
             <h3>{{ article?.author }}</h3>
 
         </div>
@@ -26,7 +32,7 @@
 
     <div class="container-fluid bg-light py-3" *ngIf="editing">
 
-        <form id="contact-form" method="post" action="contact.php" role="form"
+        <form id="contact-form" role="form"
               (ngSubmit)="saveArticle(myForm)" #myForm="ngForm">
 
             <div class="messages"></div>
